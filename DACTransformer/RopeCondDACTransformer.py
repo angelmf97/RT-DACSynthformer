@@ -88,7 +88,7 @@ class TransformerBlock(nn.Module):
         
         # Normalize embeddings first
         normalized_src = self.norm1(src)
-        if self.verbose >0  :
+        if self.verbose > 0  :
             print(f"Normalized src shape: {normalized_src.shape}")
             print(f"cond shape before expanding is : {cond.shape}")
 
@@ -131,6 +131,7 @@ class RopeCondDACTransformer(nn.Module):
         super(RopeCondDACTransformer, self).__init__()
         self.embed_size = embed_size
         self.input_size = embed_size + cond_size
+        print(f" ------------- input_size is embed_size + cond_size = {self.input_size}")
         self.num_codebooks = num_codebooks
         self.vocab_size = vocab_size
         self.verbose = verbose

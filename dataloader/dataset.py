@@ -50,9 +50,10 @@ class CustomDACDataset(Dataset):
         if metadata is None:
             raise ValueError(f"Metadata for file {filename} not found in the Excel file")
         class_name = metadata["Class Name"]
-        param_value = metadata["Param1"]
+        param_columns = [col for col in metadata.keys() if col.startswith("Param")]
+        param_values = [metadata[col] for col in param_columns]
         one_hot_fvector = self.onehot(class_name)
-        return torch.cat((one_hot_fvector, torch.tensor([param_value])))
+        return torch.cat((one_hot_fvector, torch.tensor([param_values]).reshape(-1)))
 
     def get_class_list(self):
         """Returns a list of all unique class names."""

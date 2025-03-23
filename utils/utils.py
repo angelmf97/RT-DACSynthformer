@@ -103,6 +103,7 @@ def interpolate_vectors(v, s):
     n = len(v[0])  # Length of each vector
     m = s[-1] + 1  # Last element of s plus one
     result = torch.zeros((1, m, n))  # Initialize the result tensor with zeros
+    print(result.shape)
     
     v_tensors = [torch.tensor(vec) for vec in v]
     
